@@ -1,0 +1,86 @@
+{% extends "index.html" %}
+{% block formTemp %}
+
+<section id="top" style="margin-top:80px; " class="container-fluid mt-8">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+  <a href="#section1" class="btn btn-dark" data-toggle="collapse">Search <i class="fa fa-search"></i>
+  </a>
+  </div>
+</div>
+
+<!-- Search by Receiver id -->
+<div id="section1" class="collapse">
+  <form class="form-horizontal col-md-3 col-lg-3" method="POST" action="{{url_for('searchDatabyreceiverid')}}">
+    <div class="row">
+  <div class="form-group col-lg-8 col-md-8">
+  <input type="text" class="form-control" id="searchbyreceiverid" placeholder="Receiver ID" name="searchbyreceiverid">
+  </div>
+  <div class="form-group col-lg-4 col-md-4">
+  <button type="submit" class="btn btn-dark">Search</button>
+</div>
+</div>
+</form>
+</div>
+</section>
+
+ 
+
+          <!-- Card content -->	
+		      <section id="section2" class="container-fluid">
+		           <div class="bg bg-lighta">
+		                  <div class="row">
+		                      <div class="sec_title">
+		                      <h6 id="select_txt">View Receiver Information</h6>
+		                      
+		                  </div>
+		            </div>
+		            <div class="row mt-4 pl-4 pr-4">
+
+            {% for d in emailsmslist %}
+            <div class="col-lg-6 col-md-6 col-sm-12 mt-4">             
+                <div class="card">
+                    <div class="card-body">
+                       <h5 class="card-title bg bg-dark text-light p-1"> RECEIVER TYPE : {{d["receiver_type"]}}</h5>
+                       <table class="mb-4" id="select_txt1">
+                          <tr><td class="col-lg-6">ID : </td><td>{{d["receiver_id"]}}</td></tr>
+                          <tr><td>EMAIL : </td><td>{{d["sent_email"]}}</td></tr>
+                          <tr><td>PHONE : </td><td>{{d["sent_phone"]}}</td></tr> 
+                          <tr><td>ORDER ID : </td><td>{{d["order_id"]}}</td></tr> 
+                          <tr><td>SUBJECT : </td><td>{{d["subject_text"]}}</td></tr> 
+                          <tr><td>CONTENT : </td><td>{{d["body_text"]}}</td></tr>
+                          <tr><td>DATE OF CREATION : </td><td> {{d["created_date"]}}</td></tr> 
+                       </table>
+                    </div>
+                </div>
+            </div>  
+      
+            {% endfor %}
+   
+             </div>
+          <!--    <div class="row text-center">                    
+                <div class="col-lg-4 text-center">
+                    <div id="pagination" class="m-3">
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item"><a class="btn btn-outline-dark btn-sm mr-1" href="#">Previous</a></li>
+                            <li class="page-item"><a class="btn btn-dark mr-1 btn-sm" href="#">1</a></li>
+                            <li class="page-item"><a class="btn btn-dark mr-1 btn-sm" href="#">2</a></li>
+                            <li class="page-item"><a class="btn btn-dark mr-1 btn-sm" href="#">3</a></li>
+                            <li class="page-item"><a class="btn btn-outline-dark btn-sm mr-1" href="#">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+          </div> -->
+        </section>
+
+
+
+
+     
+
+       
+
+
+
+{% endblock %}
